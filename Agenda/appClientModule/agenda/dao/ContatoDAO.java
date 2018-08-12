@@ -105,5 +105,6 @@ public class ContatoDAO {
 		
 		return contatos;
 	}
-
+	
+	
 }// ContatoDAO

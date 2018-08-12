@@ -1,19 +1,27 @@
-package agenda.model;
+package br.edu.barbacena.ifsudestemg.daw.modelo;
 
 import java.util.Calendar;
 
-public class Contato {
-	private long id;
-	private String nome, email, endereco;
+/**
+ * Representa o modelo aluno.
+ * 
+ * @author lucas
+ */
+public class Aluno {
+
+	private Long id;
+	private String nome;
+	private String email;
+	private String endereco;
 	private Calendar dataNascimento;
 	
-	public Contato() {}
+	public Aluno() {}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -48,4 +56,10 @@ public class Contato {
 	public void setDataNascimento(Calendar dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-}
+
+	@Override
+	public String toString() {
+		return String.format( "%04d. %s", id, nome );
+	}
+	
+}// class Aluno 

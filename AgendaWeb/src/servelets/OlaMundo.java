@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class OlaMundo
  */
-@WebServlet("/OlaMundo")
+@WebServlet("/OlaMundo2")
 public class OlaMundo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,6 +27,7 @@ public class OlaMundo extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		PrintWriter printWriter = response.getWriter();
@@ -35,7 +36,7 @@ public class OlaMundo extends HttpServlet {
 		printWriter.println("<html>");
 			printWriter.println("<body>");
 			
-				printWriter.println("<h2> DO GET </h2>");
+				printWriter.println("<h2> DO GET 2 </h2>");
 			
 			printWriter.println("</body>");
 		printWriter.println("</html>");
@@ -44,6 +45,7 @@ public class OlaMundo extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		// TODO Auto-generated method stub
 //		doGet(request, response);

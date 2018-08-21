@@ -17,7 +17,7 @@ public class Conexao {
 	private static final String URL_PSQL  = "jdbc:postgresql://" + HOST + "/" + NAME_DATABASE;
 	
 //	private static final String DRIVER_NAME_MYSQL = "com.mysql.jdbc.Driver";
-	private static final String DRIVER_NAME_PSQL  = "com.mysql.jdbc.Driver"; 
+	private static final String DRIVER_NAME_PSQL  = "org.postgresql.Driver"; 
 	
 	/**
 	 * Realiza a conexao com o banco de dados.

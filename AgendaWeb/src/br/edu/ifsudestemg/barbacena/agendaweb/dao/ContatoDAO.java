@@ -16,8 +16,8 @@ public class ContatoDAO {
 	
 	public void insert( Contato contato ) {
 		
-		String query = "INSERT INTO contatos ( nome, email, endereco, data_nascimento ) "
-				     + "VALUES ( ?, ?, ?, ?)";
+		String query = "INSERT INTO contatos ( nome, email, endereco, telefone, data_nascimento ) "
+				     + "VALUES ( ?, ?, ?, ?, ?)";
 	
 		try {
 			
@@ -26,9 +26,10 @@ public class ContatoDAO {
 			statement.setString(1, contato.getNome() );
 			statement.setString(2, contato.getEmail() );
 			statement.setString(3, contato.getEndereco() );
+			statement.setString(4,  contato.getTelefone());
 			
 			Date date = new Date( contato.getDataNascimento().getTimeInMillis() );
-			statement.setDate( 4, date );
+			statement.setDate( 5, date );
 			
 			statement.execute();			
 		} catch (Exception e) {
@@ -52,7 +53,7 @@ public class ContatoDAO {
 	}// remove
 	
 	public void update( Contato contato ) {
-		String query = "UDPATE contatos SET nome = ?, email = ?, edereco = ?, data_nascimento = ? WHERE id = ?";
+		String query = "UDPATE contatos SET nome = ?, email = ?, edereco = ?, telefone = ? data_nascimento = ? WHERE id = ?";
 		
 		try {
 			
@@ -61,11 +62,12 @@ public class ContatoDAO {
 			statement.setString(1, contato.getNome() );
 			statement.setString(2, contato.getEmail() );
 			statement.setString(3, contato.getEndereco() );
+			statement.setString(4,  contato.getTelefone());
 			
 			Date date = new Date(contato.getDataNascimento().getTimeInMillis());
-			statement.setDate(4, date );
+			statement.setDate(5, date );
 			
-			statement.setLong(5, contato.getId() );
+			statement.setLong(6, contato.getId() );
 			
 			
 		} catch (Exception e) {
@@ -75,7 +77,7 @@ public class ContatoDAO {
 	}
 	
 	public List<Contato> list(){
-		String query = "SELECT * FROM contatos ORDER BY nome";
+		String query = "SELECT * FROM contatos ORDER BY id";
 		List<Contato> contatos = new ArrayList<>();
 		
 		try {
@@ -95,6 +97,8 @@ public class ContatoDAO {
 				contato.setEmail(resultSet.getString("email"));
 				contato.setNome(resultSet.getString("nome"));
 				contato.setEndereco(resultSet.getString("endereco"));
+				contato.setTelefone(resultSet.getString("telefone"));
+				contato.setId(resultSet.getLong("id"));
 				
 				contatos.add(contato);
 			}

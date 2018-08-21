@@ -1,36 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cadastro::Agenda de Contatos</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<!-- JavaScript -->
+	<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
+	<!-- CSS -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
+	<!-- Default theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.min.css"/>
+	<!-- Semantic UI theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/semantic.min.css"/>
+	<!-- Bootstrap theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.min.css"/>
+	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	
 </head>
 <body>
-
-	<form action="adicionaContato" method="post">
-		<label>
-			Name: <br>
-			<input type="text" size="20" name="name">
-		</label><br><br>
-		
-		<label>
-			E-mail: <br>
-			<input type="email" size="20" name="email">
-		</label><br><br>
-		
-		<label>
-			Endereco: <br>
-			<input type="text" size="30" name="endereco">
-		</label> <br><br>
-		
-		
-		<label>
-			Data nascimento: <br>
-			<input type="date" format="dd/mm/yyyy" name="data_nascimento">
-		</label><br><br>
-		
-		
-		<button type="submit">Salvar</button>
+	<div class="form_header">
+		<h1>AGENDA DE CONTATOS</h1>
+	</div>
 	
-	</form>
+	<div class="tabela">
+	</div>
+	
+	<div class="modal" id="exampleModal" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">Cadastrar</h5>
+	        <button type="button" onclick="$('.modal').hide();" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <div class="form_content">
+				<form class="form">
+					<div class="form-group">
+						<label for="nome">Nome</label> 
+						<input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome">
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label> 
+						<input type="email" class="form-control" id="email" name="email" placeholder="Digite o email">
+					</div>
+					<div class="form-group">
+						<label for="endereco">Enderco</label> 
+						<input type="text" class="form-control" id="endereco" name="endereco" placeholder="Digite o endereco">
+					</div>
+					<div class="form-group">
+						<label for="telefone">Telefone</label> 
+						<input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Digite o telefone">
+					</div>
+					<div class="form-group">
+						<label for="data">Data de nascimento</label> 
+						<input type="text" class="form-control" id="data" name="data_nascimento" placeholder="Digite a data de nascimento">
+					</div>
+				</form>
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary btnCadastrar">Save changes</button>
+	        <button type="button" onclick="$('.modal').hide();" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="buttons">
+		<button type="button" onclick="alterar(0);" class="btn btn-primary">Cadastrar</button>
+	</div>
+	
+	<br><br>
 </body>
+<script type="text/javascript" src="assets/js/agenda.js"></script>
+<link rel="stylesheet" href="assets/css/agenda.css"/>
 </html>

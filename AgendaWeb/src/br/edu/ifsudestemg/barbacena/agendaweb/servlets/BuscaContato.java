@@ -50,8 +50,7 @@ public class BuscaContato extends HttpServlet {
 			response.getWriter().printf(jsonRetorno, contato.getId(), contato.getNome(), contato.getEndereco(), 
 								contato.getTelefone(), contato.getEmail(), ContatoDAO.dateFormatBR(contato.getDataNascimento()));
 		}
-		
-	}
+	}// doGet
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

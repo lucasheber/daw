@@ -80,7 +80,22 @@ function remover(idContato){
 	
 	alertify.confirm( "Remover", "Deseja remover o contato?", 
 	function(){
-		alertify.success("H");
+		$.post("removerContato", {
+			id_contato: idContato
+		})
+		.done(function(data){
+			data = JSON.parse(data)
+			
+			if(data.status == "success"){
+				msgSuccess("Contato removido com sucesso!");
+				carregaTabela();
+			}else 
+				msgError("O contato não pode ser removido!");
+			
+		})
+		.fail(function(){
+			
+		});
 	},
 	function(){
 		alertify.message("Operação cancelada!");

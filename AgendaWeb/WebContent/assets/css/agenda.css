@@ -1,0 +1,28 @@
+
+/* *************** RESET *************** */
+*{ margin: 0; padding: 0; }
+a { color: #000; text-decoration: none }
+
+
+/* *************** iINDEX **************** */
+.hello{ margin: 5%; text-align: center; width: 100%; }
+
+
+/* *************** FORM **************** */
+
+.form_header{ margin: 3% 0; text-align: center;  }
+.form_header h1{ font: 'Opens Sans', serif; font-size: 1.2em; }
+
+.form_content { margin: 0 auto;  max-width: 400px; }
+
+.buttons { text-align: center; }
+.buttons button { margin-top: 15px; }
+.btnAtualizar{ display: none; }
+
+/* *************** TABLE **************** */
+.table{ padding: 0; margin: 35px 0 0 0 !important; }
+.tabela{ width: 100%; padding: 2%; display: block; overflow-x: auto; white-space: nowrap;}
+.editar,
+.remover { font-size: 1.4em; cursor: pointer; width: 100%; text-align: center; }
+.editar { color: blue; }
+.remover{ color: red; }

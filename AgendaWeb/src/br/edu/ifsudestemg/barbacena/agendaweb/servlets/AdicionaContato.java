@@ -1,9 +1,6 @@
-package servelets;
+package br.edu.ifsudestemg.barbacena.agendaweb.servlets;
 
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,13 +42,15 @@ public class AdicionaContato extends HttpServlet {
 		contato.setEmail(email);
 		contato.setNome(nome);
 		contato.setEndereco(endereco);
-		contato.setDataNascimento(strDateToCalendar(dataNascimento));
+		contato.setDataNascimento(ContatoDAO.strDateToCalendar(dataNascimento));
 		contato.setTelefone(telefone);
 		
 		ContatoDAO contatoDAO = new ContatoDAO();
-		contatoDAO.insert(contato);
 		
-		response.getWriter().print("{ \"status\": \"success\"}");
+		if( contatoDAO.insert(contato) )
+			response.getWriter().print("{ \"status\": \"success\"}");
+		else 
+			response.getWriter().print("{ \"status\": \"error\"}");
 
 	}
 
@@ -63,43 +62,4 @@ public class AdicionaContato extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	/**
-	 * Converte um data no formato DD/MM/YYYY para <code>Calendar</code>.
-	 * 
-	 * @param data a data no formato DD/MM/YYYY.
-	 * 
-	 * @return <code>Calendar</code> se converteu com sucesso, <code>null</code> se
-	 * a data passada não for uma data no fomato válido.
-	 */
-	private static Calendar strDateToCalendar( String data ) {
-		
-		if( !isValidDate(data) ) return null;
-//		System.out.println(data);
-		
-		String[] campos = data.split("/");
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(Integer.parseInt(campos[2]), Integer.parseInt(campos[1]) - 1, Integer.parseInt(campos[0]));
-		
-		return calendar;
-	}
-	
-	/**
-	 * Verifica se uma data está no formato DD/MM/YYYY.
-	 * 
-	 * @param data a data a ser verificada.
-	 * 
-	 * @return <code>true</code> se for válida, <code>se</code> não for válida.
-	 */
-	public static boolean isValidDate(String data) {
-		String regex = "^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(data);
-		
-		boolean isValid = matcher.matches();
-		
-		if( isValid ) return isValid;
-			
-		return false;
-	}
-
 }

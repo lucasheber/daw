@@ -45,7 +45,7 @@
 				<form class="form">
 					<div class="form-group">
 						<label for="nome">Nome</label> 
-						<input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome">
+						<input type="text" class="form-control" data-id="" id="nome" name="nome" placeholder="Digite o nome">
 					</div>
 					<div class="form-group">
 						<label for="email">Email</label> 
@@ -67,7 +67,8 @@
 			</div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-primary btnCadastrar">Save changes</button>
+	        <button type="button" class="btn btn-primary btnCadastrar">Cadastrar</button>
+	        <button type="button" class="btn btn-primary btnAtualizar">Salvar</button>
 	        <button type="button" onclick="$('.modal').hide();" class="btn btn-secondary" data-dismiss="modal">Close</button>
 	      </div>
 	    </div>
@@ -75,7 +76,7 @@
 	</div>
 
 	<div class="buttons">
-		<button type="button" onclick="alterar(0);" class="btn btn-primary">Cadastrar</button>
+		<button type="button" onclick="adicionar();" class="btn btn-primary">Adicionar</button>
 	</div>
 	
 	<br><br>

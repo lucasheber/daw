@@ -1,4 +1,4 @@
-package servelets;
+package br.edu.ifsudestemg.barbacena.agendaweb.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;

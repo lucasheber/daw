@@ -32,8 +32,8 @@ public class BuscaContato extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Long id = Long.parseLong(request.getParameter("id_contato"));
 		
-		ContatoDAO contatoDAO = new ContatoDAO();
-		Contato contato = contatoDAO.retrive(id);
+//		ContatoDAO contatoDAO = new ContatoDAO();
+		Contato contato = null;
 		
 		String jsonRetorno;
 		
@@ -42,14 +42,14 @@ public class BuscaContato extends HttpServlet {
 			jsonRetorno =  jsonRetorno.replaceAll("'","\"");
 			response.getWriter().println(jsonRetorno);
 		}
-		else {
-			jsonRetorno = "{'status': 'success', 'id': %d, 'nome': '%s', 'endereco': '%s', 'telefone': '%s', 'email': '%s', 'data': '%s'}";
-		
-			jsonRetorno = jsonRetorno.replaceAll("'","\"");
-		
-			response.getWriter().printf(jsonRetorno, contato.getId(), contato.getNome(), contato.getEndereco(), 
-								contato.getTelefone(), contato.getEmail(), ContatoDAO.dateFormatBR(contato.getDataNascimento()));
-		}
+//		else {
+//			jsonRetorno = "{'status': 'success', 'id': %d, 'nome': '%s', 'endereco': '%s', 'telefone': '%s', 'email': '%s', 'data': '%s'}";
+//		
+//			jsonRetorno = jsonRetorno.replaceAll("'","\"");
+//		
+//			response.getWriter().printf(jsonRetorno, contato.getId(), contato.getNome(), contato.getEndereco(), 
+//								contato.getTelefone(), contato.getEmail(), ContatoDAO.dateFormatBR(contato.getDataNascimento()));
+//		}
 	}// doGet
 
 	/**

@@ -2,11 +2,9 @@ package br.edu.ifsudestemg.barbacena.agendaweb.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class Conexao {
-	private static Connection connection;
-	
+
 	private static final String USER_DATABASE = "postgres";
 	private static final String PASS_DATABASE = "psql2018*";
 	private static final String NAME_DATABASE = "agenda";
@@ -27,30 +25,18 @@ public class Conexao {
 	public static Connection getConnection() {
 		try {
 			
-			// Verifica se ja existe uma conexao aberta
-			if( connection != null ) return connection;
+//			// Verifica se ja existe uma conexao aberta
+//			if( connection != null ) return connection;
 			
 			// Carregando o JDBC Driver padrão
 			Class.forName(DRIVER_NAME_PSQL);
 			
 			// Conecta com o banco de dados
-			connection = DriverManager.getConnection(URL_PSQL, USER_DATABASE, PASS_DATABASE);
-			
-			return connection;
+			return DriverManager.getConnection(URL_PSQL, USER_DATABASE, PASS_DATABASE);
 			
 		} catch (Exception e) { e.printStackTrace(); }
 		
 		return null;
 	}// getConnection
-	
-	public static void fechar() {
-		
-		if( connection == null ) return;
-		
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}// fechar
+
 }

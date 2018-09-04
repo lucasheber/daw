@@ -11,11 +11,12 @@ $(function(){
 		// VERIFICA SE OS DADOS FORAM PREENCHIDOS
 		if( !validaDados() ) return;
 
-		$.post("adicionaContato", {
+		$.post("controle", {
 			nome: $("input[name=nome]").val(),
 			email: $("input[name=email]").val(),
 			telefone: $("input[name=telefone]").val(),
 			endereco: $("input[name=endereco]").val(),
+			logica: "AdicionaContato",
 			data_nascimento: $("input[name=data_nascimento]").val()
 		})// post
 		.done(function(data){
@@ -77,30 +78,25 @@ $(function(){
 /* *********************** FUNCTIONS ************************ */
 
 function remover(idContato){
-	
+//	alert(idContato)
 	alertify.confirm( "Remover", "Deseja remover o contato?", 
 	function(){
-		$.post("removerContato", {
+		$.post("controle", {
+			logica: "RemoverContato",
 			id_contato: idContato
 		})
 		.done(function(data){
-			data = JSON.parse(data)
-			
-			if(data.status == "success"){
-				msgSuccess("Contato removido com sucesso!");
-				carregaTabela();
-			}else 
-				msgError("O contato não pode ser removido!");
-			
+			msgSuccess("Contato removido com sucesso!");
 		})
 		.fail(function(){
-			
+			msgError("O contato não pode ser removido!");
 		});
 	},
 	function(){
 		alertify.message("Operação cancelada!");
 	});
 	
+	carregaTabela();
 }
 
 function adicionar(){
@@ -112,8 +108,10 @@ function adicionar(){
 }
 
 function alterar(idContato){
+//	$('.modal').show();
 	
-	$.getJSON("buscaContato", {
+	$.getJSON("controle", {
+		logica: "BuscaContato",
 		id_contato: idContato
 	})
 	.done(function(data){

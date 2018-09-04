@@ -45,12 +45,12 @@ public class AdicionaContato extends HttpServlet {
 		contato.setDataNascimento(ContatoDAO.strDateToCalendar(dataNascimento));
 		contato.setTelefone(telefone);
 		
-		ContatoDAO contatoDAO = new ContatoDAO();
+//		ContatoDAO contatoDAO = new ContatoDAO();
 		
-		if( contatoDAO.insert(contato) )
-			response.getWriter().print("{ \"status\": \"success\"}");
-		else 
-			response.getWriter().print("{ \"status\": \"error\"}");
+//		if( contatoDAO.insert(contato) )
+//			response.getWriter().print("{ \"status\": \"success\"}");
+//		else 
+//			response.getWriter().print("{ \"status\": \"error\"}");
 
 	}
 

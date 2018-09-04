@@ -14,8 +14,18 @@ import br.edu.ifsudestemg.barbacena.agendaweb.model.Contato;
 
 public class ContatoDAO {
 	
-	private Connection conexao = Conexao.getConnection();
+	private Connection conexao;
 	
+	public ContatoDAO(Connection conexao) {
+		this.conexao = conexao;
+	}
+	
+	
+	public ContatoDAO() {
+		this.conexao = Conexao.getConnection();
+	}
+
+
 	public boolean insert( Contato contato ) {
 		
 		String query = "INSERT INTO contatos ( nome, email, endereco, telefone, data_nascimento ) "
@@ -38,6 +48,7 @@ public class ContatoDAO {
 			return true;
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}		
 	}// insert
@@ -122,7 +133,7 @@ public class ContatoDAO {
 		return contato;
 	}// retrive
 	
-	public List<Contato> list(){
+	public List<Contato> listContatos(){
 		String query = "SELECT * FROM contatos ORDER BY id";
 		List<Contato> contatos = new ArrayList<>();
 		

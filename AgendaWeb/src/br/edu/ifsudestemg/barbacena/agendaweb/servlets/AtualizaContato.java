@@ -49,12 +49,12 @@ public class AtualizaContato extends HttpServlet {
 		contato.setId(id);
 		
 //		System.out.println(contato);
-		ContatoDAO contatoDAO = new ContatoDAO();
-		
-		if( contatoDAO.update(contato) )
-			response.getWriter().print("{ \"status\": \"success\"}");
-		else 
-			response.getWriter().print("{ \"status\": \"error\"}");
+//		ContatoDAO contatoDAO = new ContatoDAO();
+//		
+//		if( contatoDAO.update(contato) )
+//			response.getWriter().print("{ \"status\": \"success\"}");
+//		else 
+//			response.getWriter().print("{ \"status\": \"error\"}");
 	}
 
 	/**

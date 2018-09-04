@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.edu.ifsudestemg.barbacena.agendaweb.dao.Conexao;
 import br.edu.ifsudestemg.barbacena.agendaweb.dao.ContatoDAO;
 import br.edu.ifsudestemg.barbacena.agendaweb.model.Contato;
 
@@ -28,8 +29,8 @@ public class ListaContatos extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ContatoDAO contatoDAO = new ContatoDAO();
-		List<Contato> contatos = contatoDAO.list();
+		ContatoDAO contatoDAO = new ContatoDAO(Conexao.getConnection());
+		List<Contato> contatos = contatoDAO.listContatos();
 		
 		String tabela = "<table class='table table-striped'>";
 			   tabela += "<thead><tr>";

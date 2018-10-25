@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Medico :: Sistema de Gerenciamento de Unidades de Pronto Atendimento</title>
+</head>
+<body>
+	
+	<h:form>
+		<h:panelGrid>
+			<h:outputLabel for="crm">CRM</h:outputLabel>
+			<h:inputText id="crm" value="#{medicoBeans.medico.crm}"></h:inputText>
+			
+			<h:outputLabel for="nome">Nome</h:outputLabel>
+			<h:inputText id="nome" value="#{medicoBeans.medico.nome}"></h:inputText>
+			
+			<h:outputLabel for="tel">Telefone</h:outputLabel>
+			<h:inputText id="tel" value="#{medicoBeans.medico.telefone}"></h:inputText>
+			
+			<h:outputLabel for="area" value="#{medicoBeans.medico.area}">Especialidade</h:outputLabel>
+			<h:inputText id="area" value="#{medicoBeans.medico.area}"></h:inputText>
+			
+			<h:outputLabel for="salario" value="#{medicoBeans.medico.salario}" >Salario</h:outputLabel>
+			<h:inputText id="salario" value="#{medicoBeans.medico.salario}"></h:inputText>
+			
+			<h:commandButton value="Gravar" action="#{medicoBeans.insert}" />
+		</h:panelGrid>
+	</h:form>
+	
+	<div class="row">
+		<div class="col col-sm-8 offset-2">
+			<h:form>
+				<h:dataTable value="#{medicoBeans.medicos}" var="medico" styleClass="table table-striped">
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+						#{medico.nome}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">CRM</f:facet>
+						#{medico.crm}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Telefone</f:facet>
+						#{medico.telefone}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Especialidade</f:facet>
+						#{medico.area}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Salario</f:facet>
+						#{medico.salario}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Ação</f:facet>
+						<h:commandLink value="Remover" />
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Ação</f:facet>
+					</h:column>
+				</h:dataTable>
+			</h:form>	
+		</div>
+	</div>
+</body>
+</html>

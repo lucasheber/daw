@@ -1,11 +1,13 @@
 package distribuidora.modelo;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+@Entity
 public class Item {
 	@Id
 	@SequenceGenerator(name="item_id", sequenceName="item_seq", allocationSize=1)

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Distribuidora Real</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+</head>
+<body>
+
+	<div class="row">
+		<div class="col col-sm-12">
+			<h2 class="text-center">
+				<h:outputText value="Novo Produto" rendered="#{empty produtoMB.produto.id}"/>
+				<h:outputText value="Alterar Produto" rendered="#{not empty produtoMB.produto.id}"/>
+			</h2>
+		</div>
+	</div>
+	
+	<br/>
+	<br/>
+	
+	<div class="row">
+		<div class="col col-sm-6 offset-5">
+			<h:form>
+				<h:panelGrid>
+					<h:outputLabel value="Nome" for="nome"/>
+					<h:inputText styleClass="form-control" id="nome" value="#{produtoMB.produto.nome}"/>
+					
+					<h:outputLabel value="Descrição" for="descricao"/>
+					<h:inputText styleClass="form-control" id="descricao" value="#{produtoMB.produto.descricao}"/>
+					
+					<h:outputLabel value="Preço" for="preco"/>
+					<h:inputText styleClass="form-control"	 id="preco" value="#{produtoMB.produto.preco}"/>
+					
+					<br></br>
+					<h:commandButton styleClass="btn btn-success btn-block" value="Gravar" action="#{produtoMB.gravar}"/>
+				</h:panelGrid>
+			</h:form>
+	
+		</div>
+	</div>
+	
+	<br/><br/>
+	
+	<div class="row">
+		<div class="col col-sm-8 offset-2">
+			<h:form>
+				<h:dataTable value="#{produtoMB.produtos}" var="produto" styleClass="table table-striped">
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+						#{produto.nome}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Descrição</f:facet>
+						#{produto.descricao}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Preço</f:facet>
+						#{produto.preco}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Ação</f:facet>
+						<h:commandLink action="#{produtoMB.remove(produto)}" value="Remover" />
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Ação</f:facet>
+						<h:commandLink value="Alterar" >
+							<f:setPropertyActionListener value="#{produto}" target="#{produtoMB.produto}"></f:setPropertyActionListener>
+						</h:commandLink>
+					</h:column>
+				</h:dataTable>
+			</h:form>	
+			</div>
+	</div>
+</body>
+</html>

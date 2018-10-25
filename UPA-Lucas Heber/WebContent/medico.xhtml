@@ -7,35 +7,53 @@ xmlns:h="http://java.sun.com/jsf/html">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
 <title>Medico :: Sistema de Gerenciamento de Unidades de Pronto Atendimento</title>
 </head>
 <body>
+	<div class="row">
+		<div class="col col-sm-12">
+			<h2 class="text-center">
+				<h:outputText value="Cadastrar Médico" rendered="#{empty medicoBeans.medico.id}"/>
+				<h:outputText value="Alterar Médico" rendered="#{not empty medicoBeans.medico.id}"/>
+			</h2>
+		</div>
+	</div>
 	
-	<h:form>
-		<h:panelGrid>
-			<h:outputLabel for="crm">CRM</h:outputLabel>
-			<h:inputText id="crm" value="#{medicoBeans.medico.crm}"></h:inputText>
-			
-			<h:outputLabel for="nome">Nome</h:outputLabel>
-			<h:inputText id="nome" value="#{medicoBeans.medico.nome}"></h:inputText>
-			
-			<h:outputLabel for="tel">Telefone</h:outputLabel>
-			<h:inputText id="tel" value="#{medicoBeans.medico.telefone}"></h:inputText>
-			
-			<h:outputLabel for="area" value="#{medicoBeans.medico.area}">Especialidade</h:outputLabel>
-			<h:inputText id="area" value="#{medicoBeans.medico.area}"></h:inputText>
-			
-			<h:outputLabel for="salario" value="#{medicoBeans.medico.salario}" >Salario</h:outputLabel>
-			<h:inputText id="salario" value="#{medicoBeans.medico.salario}"></h:inputText>
-			
-			<h:commandButton value="Gravar" action="#{medicoBeans.insert}" />
-		</h:panelGrid>
-	</h:form>
+	<div class="row">
+		<div class="col col-sm-7 offset-5">
+			<h:form>
+				<h:panelGrid>
+					<h:outputLabel for="crm">CRM</h:outputLabel>
+					<h:inputText styleClass="form-control" id="crm" value="#{medicoBeans.medico.crm}"></h:inputText>
+					
+					<h:outputLabel for="nome">Nome</h:outputLabel>
+					<h:inputText styleClass="form-control" id="nome" value="#{medicoBeans.medico.nome}"></h:inputText>
+					
+					<h:outputLabel for="tel">Telefone</h:outputLabel>
+					<h:inputText styleClass="form-control" id="tel" value="#{medicoBeans.medico.telefone}"></h:inputText>
+					
+					<h:outputLabel for="area" value="#{medicoBeans.medico.area}">Especialidade</h:outputLabel>
+					<h:inputText styleClass="form-control" id="area" value="#{medicoBeans.medico.area}"></h:inputText>
+					
+					<h:outputLabel for="salario" value="#{medicoBeans.medico.salario}" >Salario</h:outputLabel>
+					<h:inputText styleClass="form-control" id="salario" value="#{medicoBeans.medico.salario}"></h:inputText>
+					
+					<br /><br />
+					<h:commandButton rendered="#{not empty medicoBeans.medico.id}" styleClass="btn btn-danger btn-block" value="Cancelar" action="#{medicoBeans.cancel}" />
+					<br/>
+					<h:commandButton styleClass="btn btn-success btn-block" value="Gravar" action="#{medicoBeans.insert}" />
+				</h:panelGrid>
+			</h:form>
+		</div>
+	</div>
 	
+	<br /><br />
 	<div class="row">
 		<div class="col col-sm-8 offset-2">
 			<h:form>
-				<h:dataTable value="#{medicoBeans.medicos}" var="medico" styleClass="table table-striped">
+				<h:dataTable style="width: 100%" value="#{medicoBeans.medicos}" var="medico" styleClass="table table-striped">
 					<h:column>
 						<f:facet name="header">Nome</f:facet>
 						#{medico.nome}
@@ -63,11 +81,14 @@ xmlns:h="http://java.sun.com/jsf/html">
 					
 					<h:column>
 						<f:facet name="header">Ação</f:facet>
-						<h:commandLink value="Remover" />
+						<h:commandLink action="#{medicoBeans.remove(medico)}" value="Remover" />
 					</h:column>
 					
 					<h:column>
 						<f:facet name="header">Ação</f:facet>
+						<h:commandLink value="Alterar" >
+							<f:setPropertyActionListener value="#{medico}" target="#{medicoBeans.medico}"></f:setPropertyActionListener>
+						</h:commandLink>
 					</h:column>
 				</h:dataTable>
 			</h:form>	

@@ -25,15 +25,46 @@ public class MedicoBeans {
 	}
 	
 	public boolean insert () {
+		
+		if (getMedico().getId() != null)
+			return update();
+		
 		DAO<Medico> dao = new DAO<>(Medico.class);
 		
 		boolean result = dao.insert(getMedico());
 		
 		setMedico(new Medico());
 		getMedicos();
+		
 		return result;
 	}
 	
+	public boolean remove (Medico medico) {
+		DAO<Medico> dao = new DAO<>(Medico.class);
+		
+		boolean result = dao.remove(medico);
+		
+		getMedicos();
+		
+		return result;
+	}
+	
+	public boolean update () {
+		DAO<Medico> dao = new DAO<>(Medico.class);
+		
+		boolean result = dao.update(getMedico());
+		
+		setMedico(new Medico());
+		getMedicos();
+		
+		return result;
+	}
+	
+	public void cancel () {
+		setMedico(new Medico());
+	}
+	
+
 	public List<Medico> getMedicos () {
 		DAO<Medico> dao = new DAO<>(Medico.class);
 		

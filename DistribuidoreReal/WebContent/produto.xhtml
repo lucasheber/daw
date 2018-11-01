@@ -7,13 +7,18 @@ xmlns:h="http://java.sun.com/jsf/html"
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Distribuidora Real</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-</head>
-<body>
-
-	<div class="row">
-		<div class="col col-sm-12">
-			<h2 class="text-center">
+ 	<h:outputScript name="jsf.js" library="javax.faces" target="head" />
+	<h:outputStylesheet name="style.css" library="css"></h:outputStylesheet>
+ </head>
+<h:body>
+	
+	<div id="cabecalho">
+		<h:graphicImage library="imagens" name="logo-distribuidora.png"></h:graphicImage>
+	</div>
+	
+	<div >
+		<div >
+			<h2>
 				<h:outputText value="Novo Produto" rendered="#{empty produtoMB.produto.id}"/>
 				<h:outputText value="Alterar Produto" rendered="#{not empty produtoMB.produto.id}"/>
 			</h2>
@@ -23,22 +28,27 @@ xmlns:h="http://java.sun.com/jsf/html"
 	<br/>
 	<br/>
 	
-	<div class="row">
+	<div id="conteudo">
+	
+	<div id="cadastro">
 		<div class="col col-sm-6 offset-5">
 			<h:form>
-				<h:panelGrid>
+				<fieldset>
+					<legend>Dados do Produto</legend>
 					<h:outputLabel value="Nome" for="nome"/>
-					<h:inputText styleClass="form-control" id="nome" value="#{produtoMB.produto.nome}"/>
+					<h:inputText styleClass="form-control" id="nome" value="#{produtoMB.produto.nome}"/> <br/>
 					
 					<h:outputLabel value="Descrição" for="descricao"/>
-					<h:inputText styleClass="form-control" id="descricao" value="#{produtoMB.produto.descricao}"/>
+					<h:inputText styleClass="form-control" id="descricao" value="#{produtoMB.produto.descricao}"/><br/>
 					
 					<h:outputLabel value="Preço" for="preco"/>
-					<h:inputText styleClass="form-control"	 id="preco" value="#{produtoMB.produto.preco}"/>
+					<h:inputText styleClass="form-control"	 id="preco" value="#{produtoMB.produto.preco}"/><br/>
 					
 					<br></br>
-					<h:commandButton styleClass="btn btn-success btn-block" value="Gravar" action="#{produtoMB.gravar}"/>
-				</h:panelGrid>
+					<h:commandButton styleClass="btn" value="Gravar" action="#{produtoMB.gravar}">
+						<f:ajax execute="@form" render=":cadastro :lista"></f:ajax>
+					</h:commandButton>
+				</fieldset>
 			</h:form>
 	
 		</div>
@@ -46,10 +56,10 @@ xmlns:h="http://java.sun.com/jsf/html"
 	
 	<br/><br/>
 	
-	<div class="row">
-		<div class="col col-sm-8 offset-2">
-			<h:form>
-				<h:dataTable value="#{produtoMB.produtos}" var="produto" styleClass="table table-striped">
+	<div >
+		<div >
+			<h:form id="lista">
+				<h:dataTable value="#{produtoMB.produtos}" var="produto" styleClass="dados" rowClasses="impar,par">
 					<h:column>
 						<f:facet name="header">Nome</f:facet>
 						#{produto.nome}
@@ -67,18 +77,22 @@ xmlns:h="http://java.sun.com/jsf/html"
 					
 					<h:column>
 						<f:facet name="header">Ação</f:facet>
-						<h:commandLink action="#{produtoMB.remove(produto)}" value="Remover" />
+						<h:commandLink styleClass="btn btn-danger" action="#{produtoMB.remove(produto)}" value="Remover">
+							<f:ajax execute="@form" render=":lista"></f:ajax>
+						</h:commandLink>
 					</h:column>
 					
 					<h:column>
 						<f:facet name="header">Ação</f:facet>
-						<h:commandLink value="Alterar" >
+						<h:commandLink styleClass="btn" value="Alterar" >
 							<f:setPropertyActionListener value="#{produto}" target="#{produtoMB.produto}"></f:setPropertyActionListener>
+							<f:ajax execute="@form" render=":cadastro"></f:ajax>
 						</h:commandLink>
 					</h:column>
 				</h:dataTable>
 			</h:form>	
 			</div>
 	</div>
-</body>
+	</div>
+</h:body>
 </html>

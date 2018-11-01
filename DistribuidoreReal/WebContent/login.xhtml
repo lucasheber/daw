@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>.:: Login</title>
+</head>
+<h:body>
+	<h:form id="formLogin">
+		<h:panelGrid>
+		
+			<h:outputLabel value="Login"/>
+			<h:inputText value="#{usuarioMB.usuario.login}" />
+			
+			<h:outputLabel value="Senha"/>
+			<h:inputSecret value="#{usuarioMB.usuario.senha}" />
+			
+			<h:commandButton value="Login" action="#{usuarioMB.login}"/>
+			
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

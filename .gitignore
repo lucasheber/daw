@@ -4,3 +4,4 @@ lib/
 persistence.xml
 */.settings/
 DistribuidoreReal/.settings/
+*.jar

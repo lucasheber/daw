@@ -29,7 +29,6 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 			
 			<h:outputLabel value="Quantidade"/>
 			<h:inputText value="#{notaFiscalMB.item.quantidade}"/>
-			<h:commandButton value="Gravar Item" action="#{notaFiscalMB.guardaItem}"/>
 		</fieldset>
 		<h:commandButton value="Gravar" action="#{notaFiscalMB.gravar}"/>
 		
@@ -41,17 +40,23 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 			</h:column>
 			<h:column>
 				<f:facet name="header">Preço</f:facet>
-				#{item.produto.preco}
+				<h:outputText value="#{item.valorUnitario}">
+					<f:convertNumber pattern="R$ 0.00"/>
+				</h:outputText>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Quantidade</f:facet>
-				#{item.produto.quantidade}
+				#{item.quantidade}
 			</h:column>
 			<h:column>
 				<f:facet name="header">Total</f:facet>
-				#{item.produto.total}
+				<h:outputText value="#{item.total}">
+					<f:convertNumber pattern="R$ 0.00"/>
+				</h:outputText>
 			</h:column>
 		</h:dataTable>
+		
+		<h:commandButton value="Gravar Item" action="#{notaFiscalMB.guardaItem}"/>
 	</h:form>
 	</ui:define>
 </ui:composition>

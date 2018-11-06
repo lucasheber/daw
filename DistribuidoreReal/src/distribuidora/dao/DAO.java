@@ -15,13 +15,13 @@ public class DAO<T> {
 	}
 	
 	public T findById (Long id) {
-		EntityManager entityManager = JPAUtil.getEntityManager();
+		EntityManager entityManager = new JPAUtil().getEntityManager();
 		
 		return entityManager.find(classe, id);
 	}
 	
 	public boolean insert (T objectT) {
-		this.entityManager = JPAUtil.getEntityManager(); 
+		this.entityManager = new JPAUtil().getEntityManager(); 
 		
 		this.entityManager.getTransaction().begin();
 		
@@ -36,7 +36,7 @@ public class DAO<T> {
 	
 	public boolean update (T objectT) {
 		
-		this.entityManager = JPAUtil.getEntityManager(); 
+		this.entityManager = new JPAUtil().getEntityManager(); 
 		
 		this.entityManager.getTransaction().begin();
 		
@@ -51,7 +51,7 @@ public class DAO<T> {
 	
 	public boolean remove (T objectT) {
 		
-		this.entityManager = JPAUtil.getEntityManager(); 
+		this.entityManager = new JPAUtil().getEntityManager(); 
 		
 		this.entityManager.getTransaction().begin();
 		
@@ -65,7 +65,7 @@ public class DAO<T> {
 	}
 	
 	public List<T> list () {
-		this.entityManager = JPAUtil.getEntityManager(); 
+		this.entityManager = new JPAUtil().getEntityManager(); 
 		
 		CriteriaQuery<T> query = this.entityManager.getCriteriaBuilder().createQuery(classe);
 		

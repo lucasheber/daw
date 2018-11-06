@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
-@Entity
+@Entity	
 public class Usuario {
 	@Id
 	@SequenceGenerator(name="usuario_id", sequenceName="usuario_seq", allocationSize=1)

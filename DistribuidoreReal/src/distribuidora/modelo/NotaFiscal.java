@@ -19,7 +19,7 @@ import javax.persistence.Transient;
 public class NotaFiscal {
 	
 	@Id
-	@SequenceGenerator(name="notafiscal_id", sequenceName="seq_nf", initialValue=1)
+	@SequenceGenerator(name="notafiscal_id", sequenceName="notafiscal_seq", initialValue=1)
 	@GeneratedValue(generator="notafiscal_id", strategy=GenerationType.SEQUENCE)
 	private Long id;
 	private String cnpj;

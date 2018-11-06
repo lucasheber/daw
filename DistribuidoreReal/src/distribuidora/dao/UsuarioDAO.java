@@ -9,7 +9,7 @@ public class UsuarioDAO {
 
 	public boolean existe (Usuario usuario) {
 		
-		EntityManager entityManager = JPAUtil.getEntityManager();
+		EntityManager entityManager = new JPAUtil().getEntityManager();
 		
 		entityManager.getTransaction().begin();
 		

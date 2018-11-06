@@ -14,6 +14,12 @@ public class DAO<T> {
 		this.classe = classe;
 	}
 	
+	public T findById (Long id) {
+		EntityManager entityManager = JPAUtil.getEntityManager();
+		
+		return entityManager.find(classe, id);
+	}
+	
 	public boolean insert (T objectT) {
 		this.entityManager = JPAUtil.getEntityManager(); 
 		

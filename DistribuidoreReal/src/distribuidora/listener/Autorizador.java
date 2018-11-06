@@ -15,7 +15,7 @@ public class Autorizador implements PhaseListener {
 	@Override
 	public void afterPhase(PhaseEvent phaseEvent) {
 		FacesContext context = phaseEvent.getFacesContext();
-		
+			
 		if ("/login.xhtml".equals(context.getViewRoot().getViewId())) {
 			return;
 		}

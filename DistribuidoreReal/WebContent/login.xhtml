@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html 	xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:f="http://java.sun.com/jsf/core"
-		xmlns:h="http://java.sun.com/jsf/html">
 
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>.:: Login</title>
-</head>
-<h:body>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/template.xhtml">
+	<ui:define name="corpo">
 	<h:form id="formLogin">
-		<h:panelGrid>
-		
+		<fieldset>
+			<legend>Dados do usuário</legend>
 			<h:outputLabel value="Login"/>
 			<h:inputText value="#{usuarioMB.usuario.login}" />
 			
@@ -20,7 +19,8 @@
 			
 			<h:commandButton value="Login" action="#{usuarioMB.login}"/>
 			
-		</h:panelGrid>
+		</fieldset>
 	</h:form>
-</h:body>
+	</ui:define>
+</ui:composition>
 </html>

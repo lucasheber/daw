@@ -16,6 +16,7 @@ public class Item {
 	
 	private Integer quantidade;
 	private Double valorUnitario;
+	private Double total;
 	
 	@ManyToOne
 	private Produto produto;
@@ -61,5 +62,10 @@ public class Item {
 
 	public void setNotaFiscal(NotaFiscal notaFiscal) {
 		this.notaFiscal = notaFiscal;
+	}
+
+	public Double getTotal() {
+		this.total = valorUnitario * quantidade;
+		return total;
 	}
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/template.xhtml">
+	<ui:define name="corpor">
+	<h:form>
+		<fieldset>
+			<legend>Dados da Nota</legend>
+			<h:outputText value="CNPJ"/>
+			<h:inputText value="#{notaFiscalMB.notaFiscal.cnpj}"/>
+			
+			<h:outputText value="Data"/>
+			<h:inputText value="#{notaFiscalMB.notaFiscal.data.time}">
+				<f:convertDateTime pattern="dd/mm/yyyy" timeZone="America/Sao_Paulo"/>
+			</h:inputText>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Dados da Nota</legend>
+			<h:outputText value="Produto"/>
+			<h:selectOneMenu value="#{notaFiscalMB.idProduto}">
+				<f:selectItems value="#{produtoMB.produtos}" var="produto" itemLabel="#{produto.nome}"/>
+			</h:selectOneMenu>
+			
+			<h:outputLabel value="Quantidade"/>
+			<h:inputText value="#{notaFiscalMB.item.quantidade}"/>
+			<h:commandButton value="Gravar Item" action="#{notaFiscalMB.guardaItem}"/>
+		</fieldset>
+		<h:commandButton value="Gravar" action="#{notaFiscalMB.gravar}"/>
+		
+		<h2>Itens da Nota</h2>
+		<h:dataTable value="#{notaFiscalMB.notaFiscal.itens}" var="item" styleClass="dados" rowClasses="impar,par">
+			<h:column>
+				<f:facet name="header">Produto</f:facet>
+				#{item.produto.nome}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Preço</f:facet>
+				#{item.produto.preco}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Quantidade</f:facet>
+				#{item.produto.quantidade}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Total</f:facet>
+				#{item.produto.total}
+			</h:column>
+		</h:dataTable>
+	</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

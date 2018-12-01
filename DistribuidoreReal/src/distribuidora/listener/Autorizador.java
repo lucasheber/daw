@@ -27,8 +27,10 @@ public class Autorizador implements PhaseListener {
 			
 			handler.handleNavigation(context, null, "login?faces-redirect=true");
 			
-			context.renderResponse();
+			System.out.println("Logado!!!!");
+			
 		}
+		context.renderResponse();
 	
 	}
 

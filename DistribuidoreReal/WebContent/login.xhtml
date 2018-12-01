@@ -4,23 +4,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
 xmlns:f="http://java.sun.com/jsf/core"
 xmlns:h="http://java.sun.com/jsf/html"
-xmlns:ui="http://java.sun.com/jsf/facelets">
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/template.xhtml">
 	<ui:define name="corpo">
-	<h:form id="formLogin">
-		<fieldset>
-			<legend>Dados do usuário</legend>
-			<h:outputLabel value="Login"/>
-			<h:inputText value="#{usuarioMB.usuario.login}" />
+		<h:form id="formLogin">
+			<p:fieldset legend="Dados da Usuário">
 			
-			<h:outputLabel value="Senha"/>
-			<h:inputSecret value="#{usuarioMB.usuario.senha}" />
-			
-			<h:commandButton value="Login" action="#{usuarioMB.login}"/>
-			
-		</fieldset>
-	</h:form>
+				<p:outputLabel value="Login"/>
+				
+				<p:inputText value="#{usuarioMB.usuario.login}" />
+				
+				<p:outputLabel value="Senha"/>
+				
+	 			<p:keyboard password="true" id="senha" value="#{usuarioMB.usuario.senha}" />
+	 			
+				<p:commandButton value="Login" action="#{usuarioMB.efetuaLogin}" >
+					<f:ajax execute="@form" render=":formLogin"></f:ajax>
+				</p:commandButton>
+				
+			</p:fieldset>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

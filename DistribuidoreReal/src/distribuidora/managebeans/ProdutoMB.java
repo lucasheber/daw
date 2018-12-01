@@ -3,8 +3,12 @@ package distribuidora.managebeans;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import distribuidora.dao.DAO;
 import distribuidora.modelo.Produto;
@@ -66,6 +70,15 @@ public class ProdutoMB {
 
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
+	}
+	
+	// validando 
+	public void comecaComMaiuscula(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+		String valor = value.toString();
+		
+		if (!valor.matches("[A-Z].*")) {
+			throw new ValidatorException(new FacesMessage("Deve comecar com maiuscula"));
+		}
 	}
 	
 }

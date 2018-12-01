@@ -12,13 +12,13 @@ public class UsuarioMB {
 
 	private Usuario usuario = new Usuario();
 	
-	public String login() {
+	public String efetuaLogin() {
 		String redirect = "login?faces-redirect=true";
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		
 		if (usuarioDAO.existe(usuario))
-			redirect = "login?faces-redirect=true";
+			redirect = "produto?faces-redirect=true";
 		
 		return redirect;
 		

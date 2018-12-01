@@ -1,5 +1,7 @@
 package distribuidora.managebeans;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -60,4 +62,7 @@ public class NotaFiscalMB {
 		this.idProduto = idProduto;
 	}
 	
+	public List<NotaFiscal> getNotas() {
+		return new DAO<>(NotaFiscal.class).list();
+	}
 }

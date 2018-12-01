@@ -14,6 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class NotaFiscal {
@@ -22,6 +23,8 @@ public class NotaFiscal {
 	@SequenceGenerator(name="notafiscal_id", sequenceName="notafiscal_seq", initialValue=1)
 	@GeneratedValue(generator="notafiscal_id", strategy=GenerationType.SEQUENCE)
 	private Long id;
+	
+	@Pattern(regexp="\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}", message="CNPJ invalido")
 	private String cnpj;
 	
 	@Temporal(TemporalType.DATE)

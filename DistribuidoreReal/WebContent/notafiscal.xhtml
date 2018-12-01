@@ -4,24 +4,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
 xmlns:f="http://java.sun.com/jsf/core"
 xmlns:h="http://java.sun.com/jsf/html"
-xmlns:ui="http://java.sun.com/jsf/facelets">
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/template.xhtml">
 	<ui:define name="corpor">
 	<h:form>
-		<fieldset>
-			<legend>Dados da Nota</legend>
+		<p:tabView>
+			<p:tab>
+		<p:fieldset legend="Dados da nota">
+			
 			<h:outputText value="CNPJ"/>
-			<h:inputText value="#{notaFiscalMB.notaFiscal.cnpj}"/>
+			<p:inputMask id="cnpj" value="#{notaFiscalMB.notaFiscal.cnpj}" mask="99.999.999/9999-99"/>
 			
 			<h:outputText value="Data"/>
 			<h:inputText value="#{notaFiscalMB.notaFiscal.data.time}">
 				<f:convertDateTime pattern="dd/mm/yyyy" timeZone="America/Sao_Paulo"/>
 			</h:inputText>
-		</fieldset>
-		
-		<fieldset>
-			<legend>Dados da Nota</legend>
+		</p:fieldset>
+		</p:tab>
+		<p:tab>
+		<p:fieldset legend="Dados da Nota">
+			<legend></legend>
 			<h:outputText value="Produto"/>
 			<h:selectOneMenu value="#{notaFiscalMB.idProduto}">
 				<f:selectItems value="#{produtoMB.produtos}" var="produto" itemLabel="#{produto.nome}"/>
@@ -29,11 +33,13 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 			
 			<h:outputLabel value="Quantidade"/>
 			<h:inputText value="#{notaFiscalMB.item.quantidade}"/>
-		</fieldset>
+		</p:fieldset>
+		</p:tab>
 		<h:commandButton value="Gravar" action="#{notaFiscalMB.gravar}"/>
 		
+		</p:tabView>
 		<h2>Itens da Nota</h2>
-		<h:dataTable value="#{notaFiscalMB.notaFiscal.itens}" var="item" styleClass="dados" rowClasses="impar,par">
+		<p:dataTable value="#{notaFiscalMB.notaFiscal.itens}" var="item" styleClass="dados" rowClasses="impar,par">
 			<h:column>
 				<f:facet name="header">Produto</f:facet>
 				#{item.produto.nome}
@@ -54,7 +60,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 					<f:convertNumber pattern="R$ 0.00"/>
 				</h:outputText>
 			</h:column>
-		</h:dataTable>
+		</p:dataTable>
 		
 		<h:commandButton value="Gravar Item" action="#{notaFiscalMB.guardaItem}"/>
 	</h:form>

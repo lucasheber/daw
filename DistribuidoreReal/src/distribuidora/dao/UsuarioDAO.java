@@ -6,15 +6,16 @@ import javax.persistence.Query;
 import distribuidora.modelo.Usuario;
 
 public class UsuarioDAO {
-
+	
+	private EntityManager entityManager = new JPAUtil().getEntityManager();
+	
 	public boolean existe (Usuario usuario) {
-		
-		EntityManager entityManager = new JPAUtil().getEntityManager();
 		
 		entityManager.getTransaction().begin();
 		
 		Query query = entityManager.createQuery("from Usuario u where u.login = :pLogin and u.senha = :pSenha");
 		
+		System.out.println(usuario.getLogin());
 		
 		query.setParameter("pLogin", usuario.getLogin());
 		query.setParameter("pSenha", usuario.getSenha());

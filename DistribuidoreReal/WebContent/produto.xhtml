@@ -3,9 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
 xmlns:f="http://java.sun.com/jsf/core"
 xmlns:h="http://java.sun.com/jsf/html"
-xmlns:ui="http://java.sun.com/jsf/facelets">
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="template.xhtml">
+<ui:composition template="/template.xhtml">
 	<h:outputScript name="jsf.js" library="javax.faces"></h:outputScript>
 
 	<ui:define name="corpo">
@@ -15,57 +16,63 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 		</h2>
 		
 		<h:form id="cadastro">
-			<fieldset>
-				<legend>Dados do Produto</legend>
+			<p:fieldset legend="Dados do Produto">
 				<h:outputLabel value="Nome" for="nome"/>
-				<h:inputText styleClass="form-control" id="nome" value="#{produtoMB.produto.nome}"/> <br/>
+				<p:inputText styleClass="form-control" id="nome" value="#{produtoMB.produto.nome}"> 
+					<!-- <f:validator validatorId="comecaComMaiuscula"></f:validator> -->
+				</p:inputText> <br/>
 				
 				<h:outputLabel value="Descrição" for="descricao"/>
-				<h:inputText styleClass="form-control" id="descricao" value="#{produtoMB.produto.descricao}"/><br/>
+				<p:editor styleClass="form-control" id="descricao" value="#{produtoMB.produto.descricao}"/><br/>
 				
 				<h:outputLabel value="Preço" for="preco"/>
-				<h:inputText styleClass="form-control"	 id="preco" value="#{produtoMB.produto.preco}"/><br/>
+				<p:inputText styleClass="form-control"	 id="preco" value="#{produtoMB.produto.preco}"
+					required="true" requiredMessage="Preco deve ser preenchido" 
+					validatorMessage="O valor deve ser maior que 50 centavos"> 
+					
+					<f:validateDoubleRange></f:validateDoubleRange>
+				</p:inputText><br/>
 				
 				<br></br>
 				<h:commandButton styleClass="btn" value="Gravar" action="#{produtoMB.gravar}">
 					<f:ajax execute="@form" render=":cadastro :lista"></f:ajax>
 				</h:commandButton>
-			</fieldset>
+			</p:fieldset>
 		</h:form>
 	
 
 		<h:form id="lista">
-			<h:dataTable value="#{produtoMB.produtos}" var="produto" styleClass="dados" rowClasses="impar,par">
-				<h:column>
+			<p:tabView value="#{produtoMB.produtos}" var="produto" paginator="true" row="2">
+				<p:column>
 					<f:facet name="header">Nome</f:facet>
 					#{produto.nome}
-				</h:column>
+				</p:column>
 				
-				<h:column>
+				<p:column>
 					<f:facet name="header">Descrição</f:facet>
 					#{produto.descricao}
-				</h:column>
+				</p:column>
 				
-				<h:column>
+				<p:column>
 					<f:facet name="header">Preço</f:facet>
 					#{produto.preco}
-				</h:column>
+				</p:column>
 				
-				<h:column>
+				<p:column>
 					<f:facet name="header">Ação</f:facet>
 					<h:commandLink styleClass="btn btn-danger" action="#{produtoMB.remove(produto)}" value="Remover">
 						<f:ajax execute="@form" render=":lista"></f:ajax>
 					</h:commandLink>
-				</h:column>
+				</p:column>
 				
-				<h:column>
+				<p:column>
 					<f:facet name="header">Ação</f:facet>
 					<h:commandLink styleClass="btn" value="Alterar" >
 						<f:setPropertyActionListener value="#{produto}" target="#{produtoMB.produto}"></f:setPropertyActionListener>
 						<f:ajax execute="@form" render=":cadastro"></f:ajax>
 					</h:commandLink>
-				</h:column>
-			</h:dataTable>
+				</p:column>
+			</p:tabView>
 		</h:form>	
 	</ui:define>
 </ui:composition>

@@ -1,20 +1,25 @@
 package distribuidora.modelo;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name="produtos")
 public class Produto {
 	@Id
 	@SequenceGenerator(name="produto_id", sequenceName="produto_seq", allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="produto_id")
 	private Long id;
 	
+	@NotEmpty(message="Produto deve possuir um nome válido")
 	private String nome;
 	private String descricao;
 	private Double preco;
